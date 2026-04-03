@@ -32,6 +32,9 @@
 \newif\ifoverleaf
 \overleaffalse
 
+\newif\ifprintondemand
+\printondemandfalse
+
 % =======
 % Options
 % =======
@@ -45,6 +48,7 @@
   babelLanguage/.store in=\BOOK@babelLanguage,
   desktopVersion/.code=\desktopversiontrue,
   overleaf/.code=\overleaftrue,
+  printOnDemand/.code=\printondemandtrue,
 }
 
 % Pass all unknown options to memoir
@@ -139,7 +143,7 @@
 % === Define colors ===
 
 % Define text colors as Gray color values.
-\definecolor{textbody}{gray}{0.05}% 95% is good for contrast, on yellowish paper it is not harsh.
+\definecolor{textbody}{gray}{0}% 100% is needed for good contrast with Blurb printing.
 \definecolor{footnoterule}{gray}{0.5}
 \definecolor{header}{gray}{0.2}
 \definecolor{footer}{gray}{0.2}
@@ -263,8 +267,9 @@
 
 % === hyperref ===
 
-\RequirePackage{hyperxmp}
 \RequirePackage{hyperref}
+% hyperref must be loaded before hyperxmp
+\RequirePackage{hyperxmp}
 
 % https://tex.stackexchange.com/questions/32076/incorrect-toc-index-cross-references-when-resetting-memoir-class-counters
 % hypertexnames=true
@@ -320,9 +325,11 @@
 \ifthenelse{\equal{\BOOK@babelLanguage}{italian}}{
   \renewcommand\italianhyphenmins{{3}{3}}
 }{}
+\ifthenelse{\equal{\BOOK@babelLanguage}{hungarian}}{
+  \renewcommand\hungarianhyphenmins{{3}{3}}
+}{}
 \ifthenelse{\equal{\BOOK@babelLanguage}{portuguese}}{
   \renewcommand\portuguesehyphenmins{{3}{3}}
-  % If using babel, captions names have to be renamed like this
   \addto\captionsportuguese{
     \renewcommand{\contentsname}{Índice}
     \renewcommand{\bibname}{Referências}
@@ -421,19 +428,14 @@ philo-sophical munindo amaravati thai-land}
 }
 
 \newcounter{pageRem}
-\newcounter{origPage}
 
-% Add empty pages for a total page count divisible by 8 without remainder.
-\newcommand{\emptyUntilModEight}{%
-  \setcounter{origPage}{\theCurrentPage}%
-  \setcounter{pageRem}{1 + 8 - ( \theCurrentPage - ( ( \theCurrentPage / 8 ) * 8) )}%
-  %\typeout{hey: \theCurrentPage, \theorigPage, \thepageRem}% NOTE only for debugging
+% Add empty pages for a total page count divisible by N without remainder.
+\newcommand{\emptyUntilDivisibleBy}[1]{%
+  \setcounter{pageRem}{1 + #1 - ( \thepage - ( ( \thepage / #1 ) * #1) )}%
   \loop%
-    \addtocounter{pageRem}{-1}%
+  \addtocounter{pageRem}{-1}%
   \ifnum\thepageRem>0%
-    \clearpage%
-    \thispagestyle{empty}\mbox{}%
-    %hey \theorigPage \space \thepageRem% NOTE only for debugging
+  \clearpage\thispagestyle{empty}\null%
   \repeat%
 }
 
@@ -554,6 +556,7 @@ philo-sophical munindo amaravati thai-land}
   {\centering\itshape\footnotesize #1\par}%
 }
 
+% for longer sutta and book quotes
 \renewenvironment{quote}%
 {\small
   \list{}{\rightmargin\leftmargin}%
@@ -1745,10 +1748,20 @@ philo-sophical munindo amaravati thai-land}
   \quarkmarks
   \settrims{0.5\stockheight - 0.5\paperheight}{0.5\stockwidth - 0.5\paperwidth}
   \settrimmedsize{\BOOK@paperHeight}{\BOOK@paperWidth}{*}
-\else\relax
-  \setstocksize{\BOOK@paperHeight}{\BOOK@paperWidth}
-  \settrimmedsize{\stockheight}{\stockwidth}{*}
-  \settrims{0pt}{0pt}
+\else
+  \ifprintondemand
+    % 6.125 in x 9.250 in
+    \stockheight=9.25in
+    \stockwidth=6.125in
+    \setlength{\paperheight}{\BOOK@paperHeight}
+    \setlength{\paperwidth}{\BOOK@paperWidth}
+    \settrims{0.5\stockheight - 0.5\paperheight}{0.5\stockwidth - 0.5\paperwidth}
+    \settrimmedsize{\BOOK@paperHeight}{\BOOK@paperWidth}{*}
+  \else\relax
+    \setstocksize{\BOOK@paperHeight}{\BOOK@paperWidth}
+    \settrimmedsize{\stockheight}{\stockwidth}{*}
+    \settrims{0pt}{0pt}
+  \fi
 \fi
 
 \settypeblocksize{17\baselineskip + \topskip}{*}{1.155}% pi/e
@@ -1779,6 +1792,8 @@ philo-sophical munindo amaravati thai-land}
 % NOTE if you have a quote margin, the \footnotemargin can be set equal to that
 % in your local.sty
 \setlength{\footnotemargin}{2em}
+
+% NOTE: add \raggedright to \footnotelayout if you need to disable justified footnote paragraphs.
 
 \renewcommand{\footnotelayout}{\hangpara{\footnotemargin}{1}}
 

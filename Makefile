@@ -13,6 +13,9 @@ four-times:
 document:
 	$(LATEX) $(LATEX_OPTS) $(FILE).tex
 
+pt:
+	$(LATEX) $(LATEX_OPTS) $(FILE)-pt.tex
+
 html:
 	asciidoctor -D output stillness-flowing.adoc
 

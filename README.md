@@ -3,9 +3,6 @@ Allowing Intuition, Revelation, and Insight
 
 By Ajahn Vajiro
 
-Paperback status: **N/A**  
-Ebook status: **N/A**
-
 First edition
 
 ISBN for paperback: `978-989-8994-47-9`
@@ -38,3 +35,8 @@ gem install bundler:1.13.7
 bundle install
 bundle exec make epub
 ```
+## Dar lugar à intuição, à revelação e à visão profunda
+
+Por Ajahn Vajiro
+
+Traduzido por Margarida Melo

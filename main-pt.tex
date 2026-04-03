@@ -1,0 +1,80 @@
+\documentclass[
+  final,
+  babelLanguage=portuguese,
+  %desktopVersion,
+  %showtrims,
+  %overleaf,
+]{anecdote}
+
+%\graphicspath{{./assets/photos/300dpi/}}
+\graphicspath{{./assets/photos/92dpi/}}
+
+% Page size: 135mm x 120mm
+% Body text: 11 / 13.6 pt
+
+\usepackage{local}
+
+%% Details of the book
+%% ===================
+
+\title{Dar Lugar à Intuição, à Revelação e à Visão Profunda}
+\subtitle{}
+\author{Ajahn Vajiro}
+\publisher{Publicações Sumedhārāma}
+\date{2026-04-03}
+\editionInfo{\textit{Primeira edição}, 2026}
+\ISBN{000-000-0000-00-0}
+
+% === Metadata ===
+
+\hypersetup{
+  pdftitle={\thetitle},
+  pdfauthor={\theauthor},
+  pdfcopyright={Copyright (C) 2026, \thePublisher},
+  pdfsubject={},
+  pdfkeywords={},
+  pdflicenseurl={https://creativecommons.org/licenses/by-nc-nd/4.0/},
+  pdfcontacturl={},
+  pdflang={pt},
+}
+
+%% === Load further packages ===
+
+%% === Hyphenation exceptions and corrections ===
+
+\hyphenation{London}
+
+\begin{document}
+
+\frontmatter
+
+\ifdesktopversion
+\desktopCover{\includegraphics[height=\paperheight]{./desktop-cover.jpg}}
+\fi
+
+\input{./manuscript/tex/titlepage-pt.tex}
+
+\input{./manuscript/tex/copyright-pt.tex}
+
+% \input{./manuscript/tex/dedication.tex}
+
+% \cleartorecto
+% \tableofcontents*
+
+% \input{./manuscript/tex/foreword.tex}
+
+% Page 1 is the first page of the first chapter.
+\mainmatter
+
+\input{./manuscript/tex/allowing-intuition-pt.tex}
+
+\newpage\null\thispagestyle{empty}
+\clearpage
+
+% \backmatter
+
+\input{./manuscript/tex/copyright-details.tex}
+
+\emptyUntilEven
+
+\end{document}
