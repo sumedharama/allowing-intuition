@@ -35,7 +35,7 @@ gem install bundler:1.13.7
 bundle install
 bundle exec make epub
 ```
-## Dar lugar à intuição, à revelação e à visão profunda
+## Dar Lugar à Intuição, à Revelação e à Visão Profunda
 
 Por Ajahn Vajiro
 
