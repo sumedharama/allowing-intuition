@@ -19,6 +19,9 @@ en-epub:
 pt:
 	$(LATEX) $(LATEX_OPTS) $(FILE)-pt.tex
 
+pt-epub:
+	./helpers/ebooks-pt.sh
+
 html:
 	asciidoctor -D output stillness-flowing.adoc
 

@@ -42,3 +42,4 @@ doc/_minted-prophecy/
 
 # Other
 .sass-cache/
+/.agent-shell/
