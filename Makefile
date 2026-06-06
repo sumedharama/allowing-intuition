@@ -10,8 +10,11 @@ all: document
 four-times:
 	./helpers/four-times.sh
 
-document:
+en:
 	$(LATEX) $(LATEX_OPTS) $(FILE).tex
+
+en-epub:
+	./helpers/ebooks-en.sh
 
 pt:
 	$(LATEX) $(LATEX_OPTS) $(FILE)-pt.tex
@@ -37,8 +40,11 @@ chapters-to-asciidoc:
 chapters-to-docx:
 	./helpers/chapters_to_docx.sh
 
-stylus-watch:
-	stylus -w ./vendor/asciidoctor-epub3/assets/styles/*.styl -o ./vendor/asciidoctor-epub3/data/styles/
+sass:
+	sass --no-source-map ./assets/sass:./assets/stylesheets
+
+sass-watch:
+	sass --watch --no-source-map ./assets/sass:./assets/stylesheets
 
 dist-html:
 	cp doc/*.html ../prophecy-template-html && cp -r doc/images/*.jpg ../prophecy-template-html/images/

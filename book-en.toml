@@ -1,0 +1,20 @@
+[book]
+title = "Allowing Intuition, Revelation, and Insight"
+authors = ["Ajahn Vajiro"]
+language = "en"
+multilingual = false
+src = "manuscript/markdown-en"
+
+[build]
+build-dir = "book"
+create-missing = true
+
+[output.epub]
+additional-css = ["assets/stylesheets/output-epub.css"]
+epub-version = 3
+use-default-css = false
+no-section-label = true
+footnote-backrefs = true
+curly-quotes = true
+cover-image = "desktop-cover.jpg"
+additional-resources = []

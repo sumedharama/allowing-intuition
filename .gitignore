@@ -3,6 +3,7 @@ output/
 main.pdf
 main-pt.pdf
 doc/*.html
+*.epub
 
 # Emacs temp files
 auto/

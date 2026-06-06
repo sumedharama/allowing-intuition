@@ -13,13 +13,15 @@ Based on [prophecy-template].
 
 Github: <https://github.com/profound-labs/prophecy-template>
 
-Produced with [LaTeX], [Pandoc] and [Asciidoctor].
+Produced with [LaTeX], [Pandoc] and [Mdbook-Epub].
 
 [prophecy-template]: https://github.com/profound-labs/prophecy-template
 
 [LaTeX]: http://latex-project.org/
 
 [Pandoc]: http://pandoc.org/
+
+[Mdbook-Epub]: https://github.com/Michael-F-Bryan/mdbook-epub/
 
 ## Dar Lugar à Intuição, à Revelação e à Visão Profunda
 
